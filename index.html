@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>French Flashcards</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>French Flashcards</h1>
+
+    <div class="search">
+      <input id="search" type="search" placeholder="Search in French, English or Finnish…"
+             autocomplete="off" spellcheck="false" aria-label="Search words">
+      <ul id="results" class="results" hidden></ul>
+    </div>
+
+    <div class="stage">
+      <button class="arrow" id="prev" aria-label="Previous word">&#8592;</button>
+
+      <div class="card" id="card" role="button" tabindex="0" aria-label="Flip card">
+        <div class="inner">
+          <div class="face front">
+            <button class="speak" aria-label="Pronounce" title="Pronounce (P)">🔊</button>
+            <span class="lang">Français</span>
+            <span class="text" id="fr"></span>
+          </div>
+          <div class="face back">
+            <button class="speak" aria-label="Pronounce" title="Pronounce (P)">🔊</button>
+            <span class="source" id="fr-back"></span>
+            <div class="translation">
+              <span class="lang-label">English</span>
+              <span class="text" id="en"></span>
+            </div>
+            <div class="translation">
+              <span class="lang-label">Suomi</span>
+              <span class="text" id="fi"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="arrow" id="next" aria-label="Next word">&#8594;</button>
+    </div>
+
+    <div class="controls">
+      <span id="counter"></span>
+      <button id="shuffle" class="small">Shuffle</button>
+      <button id="autospeak" class="small">Auto-speak</button>
+      <button id="restart" class="small">Back to start</button>
+      <button id="add" class="small" disabled title="Start the app with: python3 serve.py">+ Add card</button>
+    </div>
+
+    <dialog id="add-dialog">
+      <form id="add-form" novalidate>
+        <h2>Add a card</h2>
+        <label>French
+          <input name="fr" maxlength="200" autocomplete="off" spellcheck="false">
+        </label>
+        <p id="similar" class="similar" hidden></p>
+        <label>English
+          <input name="en" maxlength="200" autocomplete="off">
+        </label>
+        <label>Finnish
+          <input name="fi" maxlength="200" autocomplete="off">
+        </label>
+        <label>Spoken as <span class="optional">(optional)</span>
+          <input name="say" maxlength="200" autocomplete="off" spellcheck="false"
+                 placeholder="Leave empty to speak the French text">
+        </label>
+        <p class="note">French and at least one translation are required.</p>
+        <p id="add-error" class="error" hidden></p>
+        <div class="dialog-actions">
+          <button type="button" id="add-cancel" class="small">Cancel</button>
+          <button type="submit" id="add-save" class="small primary">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" hidden></div>
+
+    <p class="hint">Click the card to flip it · ← → to navigate · Space to flip · P or 🔊 to hear it · / to search</p>
+    <p class="hint" id="voice-info"></p>
+  </main>
+
+  <script src="words.js"></script>
+  <script src="words-1.js"></script>
+  <script src="words-2.js"></script>
+  <script src="words-3.js"></script>
+  <script src="words-user.js"></script>
+  <script src="audio/manifest.js"></script>
+  <script src="search.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
